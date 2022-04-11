@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react'
 
-import "./style.css"
 import TextP from '../../components/TextP'
 
 export default function Body(props) {
-    // console.log(props.url)
     const [data, getData] = useState([])
     const [hp, getHp] = useState()
     const [attack, getAttack] = useState()
@@ -39,8 +37,6 @@ export default function Body(props) {
             console.log(error)
         }
     }
-
-    console.log(abilities)
 
     useEffect(() => {
         getDetail()
