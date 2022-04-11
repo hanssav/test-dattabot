@@ -5,7 +5,9 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Home() {
     const [data, getData] = useState([])
-    const [detailData, getDetailData] = useState([])
+    const [url, getUrl] = useState([])
+    const [limit, getLimit] = useState(20)
+    const [offset, getOffset] = useState(0)
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -16,13 +18,13 @@ export default function Home() {
         show,
         handleClose,
         handleShow,
-        detailData,
+        url,
       };
 
     const getPokemon = async () => {
         try {
             // setTimeout(() => {
-            fetch('https://pokeapi.co/api/v2/pokemon?limit=1126')
+            fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`)
             // fetch('https://pokeapi.co/api/v2/pokemon')
             .then(
                 function(response){
@@ -45,28 +47,29 @@ export default function Home() {
         }
     }
     
-    const detail = async (url) => {
+    const detail = (url) => {
+        getUrl(url)
         // e.preventDefault();
         handleShow();
         console.log(url)
-        try {
-            setTimeout(() => {
-                fetch(url).then(function(response) {
-                    if(response.status !== 200) {
-                        console.log(response.status)
-                        return
-                    }
+        // try {
+        //     // setTimeout(() => {
+        //         fetch(url).then(function(response) {
+        //             if(response.status !== 200) {
+        //                 console.log(response.status)
+        //                 return
+        //             }
                     
-                    response.json().then(function(detailData){
-                        // console.log(detailData)
-                        getDetailData(detailData)
-                    })
-                })
-            }, 2000)
+        //             response.json().then(function(detailData){
+        //                 // console.log(detailData)
+        //                 getDetailData(detailData)
+        //             })
+        //         })
+            // }, 2000)
             
-        } catch (error) {
-            console.log(error)       
-        }
+        // } catch (error) {
+        //     console.log(error)       
+        // }
     }
     
     useEffect(() => {

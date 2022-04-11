@@ -6,7 +6,7 @@ import './style.css'
 
 export default function Detail(props) {
     // console.clear()
-    console.log(props.detailData)
+    console.log(props.url)
 
     return (
         <div className="container home py-5 h-100">
@@ -19,7 +19,7 @@ export default function Detail(props) {
                                 <Modal.Title>Detail Pokemon</Modal.Title>
                             </Modal.Header>
                             <Modal.Body className="">
-                                <Body {...props.detailData}/>
+                                <Body {...props}/>
                             </Modal.Body>
                             <Modal.Footer>
                             <Button variant="secondary" onClick={props.handleClose}>
